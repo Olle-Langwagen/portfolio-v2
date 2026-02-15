@@ -1,65 +1,233 @@
-import Image from "next/image";
+import Link from "next/link";
+import { work, education, certificates } from "@/lib/data";
+import { Timeline } from "@/components/ui/timeline";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { projects, skills } from "@/lib/data";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { FadeIn } from "@/components/ui/fade-in";
+import { TypewriterTitle } from "@/components/ui/typewriter-title";
+import { Github, ExternalLink } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-background p-8 md:p-24 relative overflow-hidden">
+      
+      {/* BAKGRUNDS-EFFEKT*/}
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-blue-500/20 dark:bg-blue-900/20 blur-[120px] rounded-full -translate-y-1/2 pointer-events-none" />
+      {/* Theme (dark/light)*/}
+      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50">
+        <ModeToggle />
+      </div>
+      {/*HERO*/}
+      <section className="max-w-4xl mx-auto mb-20 space-y-6 pt-10">
+        <FadeIn>
+          <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+            <div className="flex-1 space-y-6 text-center md:text-left">
+              <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
+                Hej, jag är <span className="text-blue-600">Olle Langwagen</span>.
+              </h1>
+              <div className="text-xl text-muted-foreground h-8 mb-6">
+                Jag är en <TypewriterTitle />
+              </div>
+              
+              <div className="flex gap-4 justify-center md:justify-start">
+                <Button asChild>
+                  <Link href="https://github.com/olle-langwagen" target="_blank">Min GitHub</Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link href="mailto:olle.langwagen@gmail.com">Kontakta mig</Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link href="https://www.linkedin.com/in/olle-langwagen/" target="_blank" >LinkedIn</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative w-40 h-40 md:w-64 md:h-64 flex-shrink-0">
+              {/*TODO add pic*/}
+              <div className="w-full h-full rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white text-4xl font-bold shadow-2xl ring-4 ring-white dark:ring-gray-800">
+                OL
+              </div>
+            </div>
+
+          </div>
+        </FadeIn>
+      </section>
+      {/*MAIN*/}
+      <section className="max-w-4xl mx-auto mb-20">
+        
+        <h2 className="text-2xl font-bold mb-6">Teknisk Kompetens</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/*Languages*/}
+          <FadeIn delay={0.05}>
+          <div className="space-y-3">
+            <h3 className="font-semibold text-muted-foreground uppercase tracking-wider text-sm">Språk</h3>
+            <div className="flex flex-wrap gap-2">
+              {skills.languages.map((skill) => (
+                <Badge key={skill} variant="outline" className="text-base py-1 px-3">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </div>
+          </FadeIn>
+          
+          {/* Frameworks */}
+          <FadeIn delay={0.1}>
+          <div className="space-y-3">
+            <h3 className="font-semibold text-muted-foreground uppercase tracking-wider text-sm">Ramverk & Bibliotek</h3>
+            <div className="flex flex-wrap gap-2">
+              {skills.frameworks.map((skill) => (
+                <Badge key={skill} variant="outline" className="text-base py-1 px-3">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </div>
+          </FadeIn>
+          {/* Tools */}
+          <FadeIn delay={0.15}>
+          <div className="space-y-3">
+            <h3 className="font-semibold text-muted-foreground uppercase tracking-wider text-sm">Verktyg</h3>
+            <div className="flex flex-wrap gap-2">
+              {skills.tools.map((skill) => (
+                <Badge key={skill} variant="outline" className="text-base py-1 px-3">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </div>
+          </FadeIn>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+      {/*PROJEKT*/}
+      <section className="max-w-6xl mx-auto">
+        <FadeIn delay={0.2}>
+        <h2 className="text-3xl font-bold mb-8 border-b pb-2">Mina Projekt</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <Card key={project.id} className="flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-gray-200/50 dark:border-gray-800/50">
+              <CardHeader>
+                <div className="flex justify-between items-start">
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+                </div>
+                <CardDescription className="pt-2">
+                  {project.description}
+                </CardDescription>
+              </CardHeader>
+              
+              <CardContent className="flex-grow">
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <Badge key={t} variant="secondary">
+                      {t}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+              
+              <CardFooter className="flex gap-2 pt-4">
+                {/* GitHub-knapp (Sekundär) */}
+                <Button variant="outline" size="sm" className="flex-1" asChild>
+                  <Link href={project.github} target="_blank">
+                    <Github className="mr-2 h-4 w-4" />
+                    Kod
+                  </Link>
+                </Button>
+
+                {/* Live-knapp (Primär) - Visas bara om länk finns */}
+                {project.link && project.link !== "#" && (
+                  <Button size="sm" className="flex-1" asChild>
+                    <Link href={project.link} target="_blank">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Besök
+                    </Link>
+                  </Button>
+                )}
+              </CardFooter>
+            </Card>
+          ))}
         </div>
-      </main>
-    </div>
+        </FadeIn>
+      </section>
+
+      {/*ERFARENHET*/}
+      <section className="max-w-4xl mx-auto mt-24 mb-32">
+        <FadeIn delay={0.3}>
+          <h2 className="text-3xl font-bold mb-8">Min Resa</h2>
+          
+          <Tabs defaultValue="work" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="work" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Arbete</TabsTrigger>
+              <TabsTrigger value="education" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Utbildning</TabsTrigger>
+              <TabsTrigger value="certificates" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Certifikat</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="work">
+              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                <Timeline items={work} />
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="education">
+              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                <Timeline items={education} />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="certificates">
+              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                <Timeline items={certificates} />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </FadeIn>
+      </section>
+
+      {/*KONTAKT */}
+      <section className="max-w-3xl mx-auto mb-20 text-center">
+        <FadeIn delay={0.4}>
+          <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-2xl p-8 md:p-12 border border-blue-200/20 dark:border-blue-800/20 backdrop-blur-sm">
+            <h2 className="text-3xl font-bold mb-4">Kontakta mig</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+              Jag söker just nu extrajobb/sommarjobb inom Fullstack-utveckling och mjukvarutveckling. Har du en idé eller ett problem som behöver lösas?
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="text-md px-8" asChild>
+                <Link href="mailto:olle.langwagen@gmail.com">
+                  Skicka ett mejl
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-md px-8" asChild>
+                <Link href="https://www.linkedin.com/in/olle-langwagen/" target="_blank">
+                  Connecta på LinkedIn
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/*FOOTER*/}
+      <footer className="py-8 text-center text-sm text-muted-foreground border-t bg-background/50 backdrop-blur-sm">
+        <p>
+          Designad och byggd av <span className="font-semibold text-foreground">Olle</span>. 
+          Källkoden finns på <a href="#" className="underline hover:text-blue-500">GitHub</a>. {/*TODO add github link */}
+        </p>
+      </footer>
+    </main>
   );
 }
