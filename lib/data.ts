@@ -68,7 +68,7 @@ export const work: TimelineItem[] = [
     date: "Feb. 2026 - Nu",
     title: "Fullstack-utvecklare",
     organization: "SoMe Software",
-    description: "Utvecklar och underhåller webbapplikationer med fokus på anvädnarupplevelse och prestanda.",
+    description: "Utvecklar och underhåller webbapplikationer med fokus på användarupplevelse och prestanda.",
   },
   {
     id: 2,
