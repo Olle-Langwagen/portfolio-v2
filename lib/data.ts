@@ -25,7 +25,7 @@ export const projects: Project[] = [
     description: "En modern portfolio byggd med Next.js, TypeScript och Tailwind CSS. Deployad på Vercel.",
     tech: ["Next.js", "React", "Tailwind", "Shadcn UI"],
     link: "#", //live
-    github: "#",
+    github: "https://github.com/Olle-Langwagen/portfolio-v2",
   },
     {
     id: 3,

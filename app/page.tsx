@@ -39,7 +39,15 @@ export default function Home() {
               <div className="text-xl text-muted-foreground h-8 mb-6">
                 Jag är en <TypewriterTitle />
               </div>
-              
+              {/*WORK BANNER*/}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-sm text-green-700 dark:text-green-300 mb-4">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Öppen för jobb / praktik
+              </div>
+
               <div className="flex gap-4 justify-center md:justify-start">
                 <Button asChild>
                   <Link href="https://github.com/olle-langwagen" target="_blank">Min GitHub</Link>
@@ -225,7 +233,7 @@ export default function Home() {
       <footer className="py-8 text-center text-sm text-muted-foreground border-t bg-background/50 backdrop-blur-sm">
         <p>
           Designad och byggd av <span className="font-semibold text-foreground">Olle</span>. 
-          Källkoden finns på <a href="#" className="underline hover:text-blue-500">GitHub</a>. {/*TODO add github link */}
+          Källkoden finns på <a href="https://github.com/Olle-Langwagen/portfolio-v2" className="underline hover:text-blue-500">GitHub</a>.
         </p>
       </footer>
     </main>
