@@ -8,6 +8,10 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { FadeIn } from "@/components/ui/fade-in";
 import { TypewriterTitle } from "@/components/ui/typewriter-title";
 import { Github, ExternalLink } from "lucide-react";
+import { BookOpen } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -16,15 +20,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background p-8 md:p-24 relative overflow-hidden">
       
-      {/* BAKGRUNDS-EFFEKT*/}
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-blue-500/20 dark:bg-blue-900/20 blur-[120px] rounded-full -translate-y-1/2 pointer-events-none" />
-      {/* Theme (dark/light)*/}
+      {/* BAKGRUNDS-EFFEKT */}
+      <div className="absolute top-0 left-0 w-full h-125 bg-blue-500/20 dark:bg-blue-900/20 blur-[120px] rounded-full -translate-y-1/2 pointer-events-none" />
+      {/* Theme (dark/light) */}
       <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50">
         <ModeToggle />
       </div>
@@ -61,11 +73,15 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative w-40 h-40 md:w-64 md:h-64 flex-shrink-0">
-              {/*TODO add pic*/}
-              <div className="w-full h-full rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white text-4xl font-bold shadow-2xl ring-4 ring-white dark:ring-gray-800">
-                OL
-              </div>
+            {/*Portrait*/}
+            <div className="relative w-40 h-40 md:w-64 md:h-64 shrink-0">
+              <Image
+                src="/portrait3.jpg"
+                alt="OL"
+                fill
+                className="object-cover rounded-full shadow-2xl ring-4 ring-white dark:ring-gray-800"
+                priority
+              />
             </div>
 
           </div>
@@ -119,56 +135,140 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
       {/*PROJEKT*/}
       <section className="max-w-6xl mx-auto">
-        <FadeIn delay={0.2}>
-        <h2 className="text-3xl font-bold mb-8 border-b pb-2">Mina Projekt</h2>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <Card key={project.id} className="flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-gray-200/50 dark:border-gray-800/50">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                </div>
-                <CardDescription className="pt-2">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent className="flex-grow">
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <Badge key={t} variant="secondary">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-              
-              <CardFooter className="flex gap-2 pt-4">
-                {/* GitHub-knapp (Sekundär) */}
-                <Button variant="outline" size="sm" className="flex-1" asChild>
-                  <Link href={project.github} target="_blank">
-                    <Github className="mr-2 h-4 w-4" />
-                    Kod
-                  </Link>
-                </Button>
+            <Dialog key={project.id}>
+              <Card className="flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-gray-200/50 dark:border-gray-800/50 h-full">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <CardTitle className="text-xl">{project.title}</CardTitle>
+                  </div>
+                  <CardDescription className="pt-2">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
 
-                {/* Live-knapp (Primär) - Visas bara om länk finns */}
-                {project.link && project.link !== "#" && (
-                  <Button size="sm" className="flex-1" asChild>
-                    <Link href={project.link} target="_blank">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Besök
-                    </Link>
-                  </Button>
-                )}
-              </CardFooter>
-            </Card>
+                <CardContent className="grow">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <Badge key={t} variant="secondary">
+                        {t}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+
+                {/* BUTTONS - "Läs mer", "GitHub", "Besök" */}
+                <CardFooter className="flex flex-col gap-3 pt-4">
+                  
+                  {/* Läs mer-button, only shows if details is defined */}
+                  {project.details && (
+                    <DialogTrigger asChild>
+                      <Button variant="secondary" size="sm" className="w-full cursor-pointer">
+                        <BookOpen className="mr-2 h-4 w-4" />
+                        Läs mer
+                      </Button>
+                    </DialogTrigger>
+                  )}
+
+                  {/* Github button and link */}
+                  <div className="flex gap-2 w-full">
+                    <Button variant="outline" size="sm" className="flex-1" asChild>
+                      <Link href={project.github} target="_blank">
+                        <Github className="mr-2 h-4 w-4" />
+                        Kod
+                      </Link>
+                    </Button>
+
+                    {project.link && project.link !== "#" && (
+                      <Button size="sm" className="flex-1" asChild>
+                        <Link href={project.link} target="_blank">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Besök
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
+                </CardFooter>
+              </Card>
+
+              {/* POPUP - shows when "läs mer" is pressed*/}
+              <DialogContent className="sm:max-w-7xl max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold">{project.title}</DialogTitle>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.tech.map((t) => (
+                      <Badge key={t} variant="secondary">{t}</Badge>
+                    ))}
+                  </div>
+                </DialogHeader>
+
+                <div className="grid md:grid-cols-12 gap-x-8 gap-y-6 py-4">
+                  {/* Left col, media */}
+                  <div className="md:col-span-5 space-y-4">
+                    {project.media &&
+                      project.media.length > 0 &&
+                      project.media.map((mediaSrc, index) => (
+                        <Image
+                          key={index}
+                          src={mediaSrc}
+                          alt={`${project.title} - media ${index + 1}`}
+                          width={1000}
+                          height={1000}
+                          className="w-full h-auto rounded-lg border shadow-md"
+                        />
+                      ))}
+                  </div>
+
+                  {/* Mid col, text*/}
+                  <div className="md:col-span-4 space-y-6">
+                    <h3 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Om projektet</h3>
+                    <div className="text-muted-foreground whitespace-pre-wrap leading-relaxed">
+                      {project.details ||
+                        project.description ||
+                        "Ingen detaljerad beskrivning tillgänglig."}
+                    </div>
+                  </div>
+
+                  {/* Right col, features */}
+                  <div className="md:col-span-3 space-y-6">
+                    {project.features && (
+                      <>
+                        <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Nyckelfunktioner</h4>
+                        <ul className="list-disc list-inside space-y-1.5 text-sm text-foreground/90">
+                          {project.features.map((f, i) => (
+                            <li key={i}>{f}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Links in popup */}
+                <div className="flex justify-end gap-3 border-t pt-4">
+                    {project.link && project.link !== "#" && (
+                      <Button asChild>
+                        <Link href={project.link} target="_blank">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Besök
+                        </Link>
+                      </Button>
+                    )}
+                    <Button variant="outline" asChild>
+                      <Link href={project.github} target="_blank">
+                          <Github className="mr-2 h-4 w-4" />
+                          GitHub
+                      </Link>
+                    </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
-        </FadeIn>
       </section>
 
       {/*ERFARENHET*/}
@@ -207,7 +307,7 @@ export default function Home() {
       {/*KONTAKT */}
       <section className="max-w-3xl mx-auto mb-20 text-center">
         <FadeIn delay={0.4}>
-          <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-2xl p-8 md:p-12 border border-blue-200/20 dark:border-blue-800/20 backdrop-blur-sm">
+          <div className="bg-linear-to-br from-blue-600/20 to-purple-600/20 rounded-2xl p-8 md:p-12 border border-blue-200/20 dark:border-blue-800/20 backdrop-blur-sm">
             <h2 className="text-3xl font-bold mb-4">Kontakta mig</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
               Jag söker just nu extrajobb/sommarjobb inom Fullstack-utveckling och mjukvarutveckling. Har du en idé eller ett problem som behöver lösas?
