@@ -13,7 +13,7 @@ export function TypewriterTitle() {
           'IoT-entusiast', 
           'Problemlösare'
         ]}
-        loop={0} // 0 = loopa för evigt
+        loop={0} // 0 = loop forever
         cursor
         cursorStyle='_'
         typeSpeed={70}

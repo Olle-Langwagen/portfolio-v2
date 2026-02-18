@@ -1,8 +1,9 @@
+"use client";
 import Link from "next/link";
 import { work, education, certificates } from "@/lib/data";
 import { Timeline } from "@/components/ui/timeline";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { projects, skills } from "@/lib/data";
+import { projects, skills, featuredProjects } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { FadeIn } from "@/components/ui/fade-in";
@@ -11,6 +12,7 @@ import { Github, ExternalLink } from "lucide-react";
 import { BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { useState } from "react";
 
 import {
   Card,
@@ -31,10 +33,12 @@ import {
 
 
 export default function Home() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
   return (
     <main className="min-h-screen bg-background p-8 md:p-24 relative overflow-hidden">
       
-      {/* BAKGRUNDS-EFFEKT */}
+      {/* BACKGROUND-EFFECT */}
       <div className="absolute top-0 left-0 w-full h-125 bg-blue-500/20 dark:bg-blue-900/20 blur-[120px] rounded-full -translate-y-1/2 pointer-events-none" />
       {/* Theme (dark/light) */}
       <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50">
@@ -77,7 +81,7 @@ export default function Home() {
             <div className="relative w-40 h-40 md:w-64 md:h-64 shrink-0">
               <Image
                 src="/portrait3.jpg"
-                alt="OL"
+                alt="Olle Langwagen"
                 fill
                 className="object-cover rounded-full shadow-2xl ring-4 ring-white dark:ring-gray-800"
                 priority
@@ -136,10 +140,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/*EXPERIENCE*/}
+      <section className="max-w-4xl mx-auto mt-24 mb-32">
+        <FadeIn delay={0.3}>
+          <h2 className="text-3xl font-bold mb-8">Min Resa</h2>
+          
+          <Tabs defaultValue="work" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="work" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Arbete</TabsTrigger>
+              <TabsTrigger value="education" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Utbildning</TabsTrigger>
+              <TabsTrigger value="certificates" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Certifikat</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="work">
+              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                <Timeline items={work} />
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="education">
+              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                <Timeline items={education} />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="certificates">
+              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                <Timeline items={certificates} />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </FadeIn>
+      </section>
+
       {/*PROJEKT*/}
       <section className="max-w-6xl mx-auto">
+      <h2 className="text-2xl font-bold mb-6">Projekt</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {(showAllProjects ? projects : featuredProjects).map((project) => (
             <Dialog key={project.id}>
               <Card className="flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-gray-200/50 dark:border-gray-800/50 h-full">
                 <CardHeader>
@@ -269,42 +307,15 @@ export default function Home() {
             </Dialog>
           ))}
         </div>
+        <div className="mt-6 text-center mb-24">
+            <Button onClick={() => setShowAllProjects(!showAllProjects)} className="cursor-pointer">
+              {showAllProjects ? "Visa mindre" : "Mer projekt"}
+            </Button>
+          </div>
       </section>
 
-      {/*ERFARENHET*/}
-      <section className="max-w-4xl mx-auto mt-24 mb-32">
-        <FadeIn delay={0.3}>
-          <h2 className="text-3xl font-bold mb-8">Min Resa</h2>
-          
-          <Tabs defaultValue="work" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="work" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Arbete</TabsTrigger>
-              <TabsTrigger value="education" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Utbildning</TabsTrigger>
-              <TabsTrigger value="certificates" className="cursor-pointer py-1 rounded-md transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950 data-[state=active]:shadow-sm" >Certifikat</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="work">
-              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-                <Timeline items={work} />
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="education">
-              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-                <Timeline items={education} />
-              </div>
-            </TabsContent>
 
-            <TabsContent value="certificates">
-              <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-                <Timeline items={certificates} />
-              </div>
-            </TabsContent>
-          </Tabs>
-        </FadeIn>
-      </section>
-
-      {/*KONTAKT */}
+      {/*CONTACT */}
       <section className="max-w-3xl mx-auto mb-20 text-center">
         <FadeIn delay={0.4}>
           <div className="bg-linear-to-br from-blue-600/20 to-purple-600/20 rounded-2xl p-8 md:p-12 border border-blue-200/20 dark:border-blue-800/20 backdrop-blur-sm">

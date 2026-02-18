@@ -1,12 +1,13 @@
-// lib/data.ts
-// Data för projekt, arbete, utbildning, certifikat och färdigheter
+//
+// Data for projects, work, education, certificates and skills
+//
 
 export type Project = {
   id: number;
   title: string;
   description: string;
   tech: string[];
-  link: string; //live demo elr repo
+  link: string;
   github: string;
   media?: string[];
   details?: string;
@@ -14,24 +15,10 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+
+
   {
     id: 1,
-    title: "(COMING SOON) ESP32 Buss-monitor",
-    description: "En IoT-enhet som hämtar realtidsdata från Trafiklab API och visar nästa buss på en OLED-skärm. För personer som missar bussar :)",
-    tech: ["C", "ESP32", "REST API", "ArduinoJson", "IoT"],
-    link: "#",
-    github: "#",
-  },
-  {
-    id: 2,
-    title: "Min Portfolio",
-    description: "En modern portfolio byggd med Next.js, TypeScript och Tailwind CSS. Deployad på Vercel.",
-    tech: ["Next.js", "React", "Tailwind", "Shadcn UI"],
-    link: "#",
-    github: "https://github.com/Olle-Langwagen/portfolio-v2",
-  },
-  {
-    id: 3,
     title: "eCommerce webshop",
     description: "En e-commerce webshop byggd med vanilla JavaScript, HTML och CSS med fokus på användarupplevelse och responsiv design.",
     tech: ["Javascript", "HTML", "CSS", "LocalStorage", "UI/UX"],
@@ -39,7 +26,7 @@ export const projects: Project[] = [
     github: "https://github.com/Olle-Langwagen/Shopadero",
   },
   {
-    id: 4,
+    id: 2,
     title: "Docker Monitor with ESP8266",
     description: "En fysisk dashboard som övervakar serverstatus i realtid via en OLED-skärm, webbpanel och ett egenutvecklat REST API.",
     tech: ["C++", "ESP8266", "Python (Flask)", "Docker", "REST API", "ArduinoJson", "IoT"],
@@ -50,7 +37,7 @@ export const projects: Project[] = [
     details: "Jag byggde detta projekt för att få en överblick över min hemmaservers containers utan att behöva logga in via SSH. \n\nSystemet består av två huvudkomponenter: \n\n1. En Backend (Python/Flask) som kommunicerar med Docker Socket för att hämta status på alla containers, sorterar containers med fel överst och exponerar datan via ett JSON-API.\n\n2. En ESP8266 + skärm som hämtar och visualiserar datan samt fungerar som webbserver. \n\nEn av de största tekniska utmaningarna var det begränsade RAM-minnet på ESP8266. För att förhindra krascher vid hantering av stora JSON-objekt och grafik samtidigt, implementerade jag 'Page Buffer'-rendering, via U8g2-biblioteket och dynamisk minnesallokering. Den byter sida automatiskt men man kan även klicka på flash knappen för att själv skrolla mellan sidorna. \n\nJag implementerade även bättre sortering av containers så att nere-liggande containers visas först, samt ett automatiskt nattläge som dimmar skärmen baserat på NTP-tidssynkronisering. \nJag gjorde även en webbpanel som körs direkt på ESPn för att enkelt se samma sak via en webbläsare."
   },
   {
-    id: 5,
+    id: 3,
     title: "Pokémon battle simulator",
     description: "Ett CLI-baserat program som simulerar den klassiska Pokémon-striden från Pokémon Red/Blue/Yellow, där användaren kan se striden utspela sig i terminalen.",
     tech: ["Python", "Colorama", "OOP", "CLI", "Just_Playback"],
@@ -62,7 +49,7 @@ export const projects: Project[] = [
 
   },
   {
-    id: 6,
+    id: 4,
     title: "Trivia Game in Python",
     description: "Ett enkelt trivia-spel i Python gjort med customTkinter där användaren kan testa sina kunskaper inom olika kategorier och svårighetsgrader.",
     tech: ["Python", "customTkinter", "GUI", "CSV"],
@@ -73,7 +60,7 @@ export const projects: Project[] = [
     details: "Jag byggde detta projekt som en övning i Python och GUI-utveckling med customTkinter. Spelet erbjuder flera kategorier (t.ex. Historia, Teknik, Musik) och tre svårighetsgrader (Lätt, Medel, Svår). \n\nAnvändaren kan svara eller passa på frågor, och poängen spåras under spelets gång, användaren kan sedan se sin slutpoäng när spelet är över. \n\nJag använde customTkinter för att skapa ett mer modernt och visuellt tilltalande GUI jämfört med standard Tkinter. \n\nDetta är ett gammalt projekt (~2021) men tycker ändå det är värt att visa upp :)"
   },
   {
-    id: 7,
+    id: 5,
     title: "TypoTwist",
     description: "En hemsida för typography-nördar där användare kan skriva in en text och se den renderas i olika typsnitt och stilar. Simpel men elegant.",
     tech: ["HTML", "CSS", "JavaScript", "Google Fonts API"],
@@ -83,7 +70,25 @@ export const projects: Project[] = [
     features: ["Font Preview", "Custom Text Input", "Google Fonts Integration"],
     details: "Byggd med vanlig tech stack för enklast deployment på GitHub Pages. \n\nHemsidan visar hur en text kan renderas i olika typsnitt och stilar med hjälp av Google Fonts API. \n\nAnvändaren kan skriva in en text och se den renderas i realtid i olika typsnitt, vilket gör det till ett roligt verktyg för att utforska typografi och hitta det perfekta typsnittet för olika ändamål."
   },
+  {
+    id: 6,
+    title: "Min Portfolio",
+    description: "En modern portfolio byggd med Next.js, TypeScript och Tailwind CSS. Deployad på Vercel.",
+    tech: ["Next.js", "React", "Tailwind", "Shadcn UI"],
+    link: "#",
+    github: "https://github.com/Olle-Langwagen/portfolio-v2",
+  },
+  {
+    id: 7,
+    title: "(COMING SOON) ESP32 Buss-monitor",
+    description: "En IoT-enhet som hämtar realtidsdata från Trafiklab API och visar nästa buss på en OLED-skärm. För personer som missar bussar :)",
+    tech: ["C", "ESP32", "REST API", "ArduinoJson", "IoT"],
+    link: "#",
+    github: "#",
+  },
 ];
+
+export const featuredProjects = projects.slice(0, 3);
 
 
 export type TimelineItem = {
@@ -92,6 +97,7 @@ export type TimelineItem = {
   title: string;
   organization: string;
   description: string;
+  highlights?: string[];
 };
 
 export const work: TimelineItem[] = [
@@ -101,13 +107,15 @@ export const work: TimelineItem[] = [
     title: "Fullstack-utvecklare",
     organization: "SoMe Software",
     description: "Utvecklar och underhåller webbapplikationer med fokus på användarupplevelse och prestanda.",
+    highlights: ["Next.js", "React", "Tailwind CSS", "TypeScript", "REST API", "Git", "CI/CD", "LLM"],
   },
   {
     id: 2,
     date: "Sommar 2023",
-    title: "Tobaksprevention",
+    title: "Informatör",
     organization: "Region Uppsala",
     description: "Utvecklade material och utförde intervjuer för att främja tobaksavvänjning bland ungdomar.",
+    highlights: ["Interviews", "Youth Engagement", ]
   },
     {
     id: 3,
@@ -115,6 +123,7 @@ export const work: TimelineItem[] = [
     title: "Restaurangbiträde",
     organization: "Jureskogs",
     description: "Arbetade i restaurang med fokus på kundtjänst och servering.",
+    highlights: ["Customer Service", "Teamwork", "Fast-paced Environment", "Stress Management"]
   },
     {
     id: 4,
@@ -122,6 +131,7 @@ export const work: TimelineItem[] = [
     title: "Lagerarbete",
     organization: "Uppsala kommun",
     description: "Arbetade i lager med fokus på logistik och produktivitet.",
+    highlights: ["Logistics", "Inventory Management", "Efficiency"]
   },
     {
     id: 5,
@@ -129,6 +139,7 @@ export const work: TimelineItem[] = [
     title: "Restaurangbiträde",
     organization: "Yukikos Sushi",
     description: "Arbetade i restaurang med fokus på kundtjänst och servering.",
+    highlights: ["Customer Service", "Teamwork", "Fast-paced Environment", "Stress Management"]
   },
 ];
 
