@@ -14,7 +14,7 @@ import LanguageSwitcher from "@/components/language-switcher";
 import { ProjectSection } from "@/components/project-section";
 import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const lang = (await params).lang;
   const dictionary = await getDictionary(lang);
   
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   }
 }
 
-export default async function Home({ params }: { params: { lang: Locale } }) {
+export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
   const lang = (await params).lang;
   const dictionary = await getDictionary(lang);
   const { work, education, certificates } = dictionary;

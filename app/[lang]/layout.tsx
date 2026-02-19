@@ -28,10 +28,9 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const awaitedParams = await Promise.resolve(params);
-  const { lang } = awaitedParams;
+  const { lang } = await params;
   return (
     <html lang={lang} suppressHydrationWarning>
       <body className={inter.className}>
