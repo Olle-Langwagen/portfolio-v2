@@ -2,17 +2,11 @@
 
 import { Typewriter } from 'react-simple-typewriter';
 
-export function TypewriterTitle() {
+export function TypewriterTitle({ words }: { words: string[] }) {
   return (
     <span className="text-blue-600 font-bold">
       <Typewriter
-        words={[
-          'Fullstack-utvecklare', 
-          'Datavetenskaps-student',
-          'Homelabber', 
-          'IoT-entusiast', 
-          'Problemlösare'
-        ]}
+        words={words}
         loop={0} // 0 = loop forever
         cursor
         cursorStyle='_'

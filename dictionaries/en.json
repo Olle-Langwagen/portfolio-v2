@@ -1,0 +1,197 @@
+{
+  "page": {
+    "home": {
+      "title": "Hi, I'm",
+      "name": "Olle Langwagen",
+      "description": "I am a",
+      "availability": "Open for work / internship",
+      "typewriter_words": [
+        "Fullstack Developer",
+        "Computer Science Student",
+        "Homelabber",
+        "IoT Enthusiast",
+        "Problem Solver"
+      ],
+      "github_button": "My GitHub",
+      "contact_button": "Contact me",
+      "linkedin_button": "LinkedIn",
+      "technical_skills": "Technical Skills",
+      "languages": "Languages",
+      "frameworks_and_libraries": "Frameworks & Libraries",
+      "tools": "Tools",
+      "my_journey": "My Journey",
+      "work": "Work",
+      "education": "Education",
+      "certificates": "Certificates",
+      "contact_me": "Contact me",
+      "contact_description": "I am currently looking for part-time/summer jobs in Fullstack and software development. Do you have an idea or a problem that needs solving?",
+      "send_email_button": "Send an email",
+      "connect_on_linkedin_button": "Connect on LinkedIn",
+      "footer_text": "Designed and built by",
+      "source_code_text": "The source code is available on"
+    }
+  },
+  "project_section": {
+    "title": "Projects",
+    "read_more": "Read more",
+    "code": "Code",
+    "visit": "Visit",
+    "show_less": "Show less",
+    "more_projects": "More projects",
+    "about_project": "About the project",
+    "no_details": "No detailed description available.",
+    "key_features": "Key features",
+    "github": "GitHub",
+    "projects": [
+      {
+        "id": 1,
+        "title": "eCommerce webshop",
+        "description": "An e-commerce webshop built with vanilla JavaScript, HTML, and CSS with a focus on user experience and responsive design.",
+        "tech": ["Javascript", "HTML", "CSS", "LocalStorage", "UI/UX"],
+        "link": "https://olle-langwagen.github.io/Shopadero/",
+        "github": "https://github.com/Olle-Langwagen/Shopadero"
+      },
+      {
+        "id": 2,
+        "title": "Docker Monitor with ESP8266",
+        "description": "A physical dashboard that monitors server status in real-time via an OLED screen, web panel, and a custom-developed REST API.",
+        "tech": ["C++", "ESP8266", "Python (Flask)", "Docker", "REST API", "ArduinoJson", "IoT"],
+        "link": "#",
+        "github": "https://github.com/Olle-Langwagen/Docker-monitor-ESP",
+        "media": ["/docker-watcher1.jpg", "/docker-watcher2.jpg"],
+        "features": ["Docker API Integration", "Embedded Systems", "Fullstack IoT", "Real-time Monitoring", "Memory Optimization", "NTP Time Sync", "Web Dashboard"],
+        "details": "I built this project to get an overview of my home server's containers without having to log in via SSH. \n\nThe system consists of two main components: \n\n1. A Backend (Python/Flask) that communicates with the Docker Socket to retrieve the status of all containers, sorts containers with errors to the top, and exposes the data via a JSON API.\n\n2. An ESP8266 + screen that fetches and visualizes the data and also functions as a web server. \n\nOne of the biggest technical challenges was the limited RAM on the ESP8266. To prevent crashes when handling large JSON objects and graphics simultaneously, I implemented 'Page Buffer' rendering via the U8g2 library and dynamic memory allocation. It changes pages automatically, but you can also click the flash button to scroll between the pages yourself. \n\nI also implemented better sorting of containers so that down-containers are displayed first, as well as an automatic night mode that dims the screen based on NTP time synchronization. \nI also made a web panel that runs directly on the ESP to easily see the same thing via a web browser."
+      },
+      {
+        "id": 3,
+        "title": "Pokémon battle simulator",
+        "description": "A CLI-based program that simulates the classic Pokémon battle from Pokémon Red/Blue/Yellow, where the user can watch the battle unfold in the terminal.",
+        "tech": ["Python", "Colorama", "OOP", "CLI", "Just_Playback"],
+        "link": "#",
+        "github": "https://github.com/Olle-Langwagen/CLI-Pokemon-battling-program",
+        "media": ["/PokemonCLI.gif"],
+        "features": ["Turn-based Combat", "Type Effectiveness", "Status Effects", "Damage Calculation", "ASCII", "Color-coded Output", "Music", "Critical Hits & Miss Chance", "Delay printing"],
+        "details": "I built this project as a fun exercise in Python, where I wanted to recreate the classic Pokémon battle in a text-based form. \n\nThe program selects three random Pokémon for both the player and the opponent, and then the battle is simulated in the terminal with color-coded output to show damage, status changes, and type advantages. \n\nI used the Colorama library to make the output more visually appealing, and Just_Playback to add sound and music support during the battle."
+      },
+      {
+        "id": 4,
+        "title": "Trivia Game in Python",
+        "description": "A simple trivia game in Python made with customTkinter where the user can test their knowledge in different categories and difficulty levels.",
+        "tech": ["Python", "customTkinter", "GUI", "CSV"],
+        "link": "#",
+        "github": "https://github.com/Olle-Langwagen/Trivia",
+        "media": ["/triviaGame.gif"],
+        "features": ["Multiple Categories", "Difficulty Levels", "Score Tracking", "CustomTkinter GUI", "CSV Data Storage"],
+        "details": "I built this project as an exercise in Python and GUI development with customTkinter. The game offers multiple categories (e.g., History, Technology, Music) and three difficulty levels (Easy, Medium, Hard). \n\nThe user can answer or pass on questions, and the score is tracked during the game, the user can then see their final score when the game is over. \n\nI used customTkinter to create a more modern and visually appealing GUI compared to standard Tkinter. \n\nThis is an old project (~2021) but I still think it's worth showing off :)"
+      },
+      {
+        "id": 5,
+        "title": "TypoTwist",
+        "description": "A website for typography nerds where users can enter text and see it rendered in different fonts and styles. Simple but elegant.",
+        "tech": ["HTML", "CSS", "JavaScript", "Google Fonts API"],
+        "link": "https://olle-langwagen.github.io/TypoTwist/",
+        "github": "https://github.com/Olle-Langwagen/TypoTwist",
+        "media": ["/typoTwist.png"],
+        "features": ["Font Preview", "Custom Text Input", "Google Fonts Integration"],
+        "details": "Built with the usual tech stack for the easiest deployment on GitHub Pages. \n\nThe website shows how text can be rendered in different fonts and styles using the Google Fonts API. \n\nThe user can enter text and see it rendered in real-time in different fonts, making it a fun tool for exploring typography and finding the perfect font for different purposes. Users can also download the text as PNG or SVG. There's also a live preview of the HTML when the user enters You also see a live preview of the HTML when the user types."
+      },
+      {
+        "id": 6,
+        "title": "My Portfolio",
+        "description": "A modern portfolio built with Next.js, TypeScript, and Tailwind CSS. Deployed on Vercel.",
+        "tech": ["Next.js", "React", "Tailwind", "Shadcn UI"],
+        "link": "#",
+        "github": "https://github.com/Olle-Langwagen/portfolio-v2"
+      },
+      {
+        "id": 7,
+        "title": "(COMING SOON) ESP32 Bus Monitor",
+        "description": "An IoT device that fetches real-time data from the Trafiklab API and displays the next bus on an OLED screen. For people who miss buses :)",
+        "tech": ["C", "ESP32", "REST API", "ArduinoJson", "IoT"],
+        "link": "#",
+        "github": "#"
+      }
+    ]
+  },
+  "work": [
+    {
+      "id": 1,
+      "date": "Feb. 2026 - Present",
+      "title": "Fullstack Developer",
+      "organization": "SoMe Software",
+      "description": "Developing and maintaining web applications with a focus on user experience and performance.",
+      "highlights": ["Next.js", "React", "Tailwind CSS", "TypeScript", "REST API", "Git", "CI/CD", "LLM"]
+    },
+    {
+      "id": 2,
+      "date": "Summer 2023",
+      "title": "Communicator",
+      "organization": "Region Uppsala",
+      "description": "Developed materials and conducted interviews to promote smoking cessation among young people.",
+      "highlights": ["Interviews", "Youth Engagement"]
+    },
+    {
+      "id": 3,
+      "date": "Oct. 2021 - July 2022",
+      "title": "Restaurant Worker",
+      "organization": "Jureskogs",
+      "description": "Worked in a restaurant with a focus on customer service and serving.",
+      "highlights": ["Customer Service", "Teamwork", "Fast-paced Environment", "Stress Management"]
+    },
+    {
+      "id": 4,
+      "date": "Summer 2021",
+      "title": "Warehouse Worker",
+      "organization": "Uppsala Kommun",
+      "description": "Worked in a warehouse with a focus on logistics and productivity.",
+      "highlights": ["Logistics", "Inventory Management", "Efficiency"]
+    },
+    {
+      "id": 5,
+      "date": "Nov. 2019 - Feb. 2020",
+      "title": "Restaurant Worker",
+      "organization": "Yukikos Sushi",
+      "description": "Worked in a restaurant with a focus on customer service and serving.",
+      "highlights": ["Customer Service", "Teamwork", "Fast-paced Environment", "Stress Management"]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "date": "2024 - Present",
+      "title": "Bachelor's Program in Computer Science",
+      "organization": "Mälardalen University",
+      "description": "Taking courses in programming, algorithms, databases, and software development."
+    },
+    {
+      "id": 2,
+      "date": "2021 - 2024",
+      "title": "Technology Program",
+      "organization": "NTI Gymnasiet",
+      "description": "Specialization in information and media technology - Major: Software."
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "date": "2024",
+      "title": "IT Specialist - Python",
+      "organization": "Certiport - A Pearson VUE Business",
+      "description": "Basic course in Python programming and problem-solving."
+    },
+    {
+      "id": 2,
+      "date": "2024",
+      "title": "IT Specialist - Networking",
+      "organization": "Certiport - A Pearson VUE Business",
+      "description": "Basic course in network administration and security."
+    },
+    {
+      "id": 3,
+      "date": "2023",
+      "title": "IT Specialist - Javascript",
+      "organization": "Certiport - A Pearson VUE Business",
+      "description": "Basic course in JavaScript programming and web development."
+    }
+  ]
+}

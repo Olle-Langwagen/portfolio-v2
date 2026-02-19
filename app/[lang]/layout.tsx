@@ -17,13 +17,23 @@ export const metadata: Metadata = {
   };
 
 
-export default function RootLayout({
+import { i18n } from "@/lib/i18n-config";
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
+
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: { lang: string };
+}) {
+  const awaitedParams = await Promise.resolve(params);
+  const { lang } = awaitedParams;
   return (
-    <html lang="sv" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
