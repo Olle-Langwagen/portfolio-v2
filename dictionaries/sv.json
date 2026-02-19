@@ -92,7 +92,7 @@
         "tech": ["HTML", "CSS", "JavaScript", "Google Fonts API"],
         "link": "https://olle-langwagen.github.io/TypoTwist/",
         "github": "https://github.com/Olle-Langwagen/TypoTwist",
-        "media": ["/typoTwist.png"],
+        "media": ["/TypoTwist.png"],
         "features": ["Font Preview", "Custom Text Input", "Google Fonts Integration"],
         "details": "Byggd med vanlig tech stack för enklast deployment på GitHub Pages. \n\nHemsidan visar hur en text kan renderas i olika typsnitt och stilar med hjälp av Google Fonts API. \n\nAnvändaren kan skriva in en text och se den renderas i realtid i olika typsnitt, vilket gör det till ett roligt verktyg för att utforska typografi och hitta det perfekta typsnittet för olika ändamål. Användare kan även ladda ner texten, som PNG eller SVG. Man ser även en live preview av HTML när man skriver in texten."
       },
